@@ -2,6 +2,7 @@ import { sveltekit } from "@sveltejs/kit/vite";
 import { defineConfig } from "vitest/config";
 import { viteStaticCopy } from "vite-plugin-static-copy";
 import path from "path";
+import { normalizePath } from "vite";
 
 export default defineConfig({
   plugins: [
@@ -9,7 +10,7 @@ export default defineConfig({
     viteStaticCopy({
       targets: [
         {
-          src: "./schema.sql",
+          src: normalizePath(path.resolve(__dirname, "./schema.sql")),
           dest: "./",
         },
       ],
