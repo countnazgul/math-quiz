@@ -9,7 +9,27 @@ import sqlite from 'better-sqlite3';
 import fs from 'fs';
 
 const db = sqlite(':memory:');
-db.exec(fs.readFileSync('./schema.sql', 'utf8'));
+
+const sql = `CREATE TABLE user (
+    id VARCHAR(15) PRIMARY KEY,
+    username VARCHAR(31) NOT NULL
+);
+CREATE TABLE user_key (
+    id VARCHAR(255) PRIMARY KEY,
+    user_id VARCHAR(15) NOT NULL,
+    hashed_password VARCHAR(255),
+    FOREIGN KEY (user_id) REFERENCES user(id)
+);
+CREATE TABLE user_session (
+    id VARCHAR(127) PRIMARY KEY,
+    user_id VARCHAR(15) NOT NULL,
+    active_expires BIGINT NOT NULL,
+    idle_expires BIGINT NOT NULL,
+    FOREIGN KEY (user_id) REFERENCES user(id)
+);`
+
+// db.exec(fs.readFileSync('./schema.sql', 'utf8'));
+db.exec(sql);
 
 export const auth = lucia({
 	adapter: betterSqlite3(db, {
