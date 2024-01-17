@@ -48,4 +48,22 @@
     font-size: 30px;
     font-weight: 800;
   }
+
+  @media screen and (max-width: 600px) {
+  header {
+    background-color: blueviolet;
+    height: 50px;
+    display: grid;
+    grid-template-columns: auto 30px 70px;
+    align-items: center;
+    justify-items: center;
+
+  }
+
+  header > div:nth-child(1) {
+    letter-spacing: 5px;
+    font-size: 14px;
+    font-weight: 800;
+  }
+}
 </style>

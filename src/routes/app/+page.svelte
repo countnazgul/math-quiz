@@ -34,8 +34,8 @@
   <Header />
   <main-content>
     <options>
-      <div><NumberInput label="Age" min={13} max={18} bind:value={age} /></div>
-      <div>
+      <div class="age"><NumberInput label="Age" min={13} max={18} bind:value={age} /></div>
+      <div class="no-of-questions">
         <NumberInput
           label="Number of questions"
           min={10}
@@ -43,8 +43,8 @@
           bind:value={numberOfQuestions}
         />
       </div>
-      <div><RadioGroup items={areaItems} bind:value={area} /></div>
-      <div><Button on:click={getQuestions}>Generate questions</Button></div>
+      <div class="areas" ><RadioGroup items={areaItems} bind:value={area} /></div>
+      <div class="generate"><Button on:click={getQuestions} fullSize>Generate</Button></div>
     </options>
     <questions-list>
       {#if isLoaderVisible}
@@ -91,6 +91,7 @@
     display: flex;
     flex-direction: column;
     gap: 20px;
+    overflow: auto;
   }
 
   .loader {
@@ -99,4 +100,38 @@
     justify-content: center;
     align-items: center;
   }
+
+  @media screen and (max-width: 600px) {
+    options {
+    padding-top: 10px;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    grid-template-rows: 1fr 1fr 1fr;
+    align-items: center;
+    justify-items: center;
+    gap: 5px;
+  }
+
+  .age {
+    grid-column: 1;
+    grid-row:1;
+  }
+
+  .no-of-questions {
+    grid-column: 2;
+    grid-row:1;
+  }
+
+  .areas {
+    grid-column: 1 / span 2;
+    grid-row:2;
+  }
+
+  .generate {
+    grid-column: 1 / span 2;
+    grid-row:3;
+    width: 100%
+  }
+
+}
 </style>
