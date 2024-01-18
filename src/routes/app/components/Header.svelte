@@ -11,7 +11,9 @@
 
 <header>
   <div>MATH QUIZ</div>
+</header>
 
+<div class="header-options">
   <div>
     <ActionIcon
       on:click={toggleTheme}
@@ -31,16 +33,15 @@
       <Button type="submit" variant="subtle" color="orange">Sign out</Button>
     </form>
   </div>
-</header>
+</div>
 
 <style>
   header {
     background-color: blueviolet;
-    height: 50px;
-    display: grid;
-    grid-template-columns: auto 50px 100px;
+    min-height: 50px;
+    display: flex;
+    justify-content: center;
     align-items: center;
-    justify-items: center;
   }
 
   header > div:nth-child(1) {
@@ -49,21 +50,40 @@
     font-weight: 800;
   }
 
-  @media screen and (max-width: 600px) {
-  header {
-    background-color: blueviolet;
+  .header-options {
+    position: absolute;
+    right: 0px;
+    top: 0px;
     height: 50px;
-    display: grid;
-    grid-template-columns: auto 30px 70px;
+    display: flex;
+    flex-direction: row;
     align-items: center;
-    justify-items: center;
-
   }
 
-  header > div:nth-child(1) {
-    letter-spacing: 5px;
-    font-size: 14px;
-    font-weight: 800;
+  @media screen and (max-width: 600px) {
+    header {
+      background-color: blueviolet;
+      min-height: 40px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+
+    .header-options {
+      position: absolute;
+      right: 0px;
+      top: 0px;
+      display: flex;
+      flex-direction: row;
+      align-items: center;
+      width: 80px;
+      height: 40px;
+    }
+
+    header > div:nth-child(1) {
+      letter-spacing: 5px;
+      font-size: 14px;
+      font-weight: 800;
+    }
   }
-}
 </style>

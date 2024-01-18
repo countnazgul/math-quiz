@@ -9,7 +9,7 @@
   let isModalOpen = false;
 
   function showAnswer(show: boolean) {
-    if ($screenWidth <= 500) {
+    if ($screenWidth <= 600) {
       isModalOpen = show;
     } else {
       isShown = show;
